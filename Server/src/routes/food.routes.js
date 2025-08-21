@@ -3,10 +3,10 @@ import { foodController } from "../controllers/food.controller.js";
 
 const router = express.Router();
 
-router.post("/food", foodController.addFoodItem);
-router.put("/food/:id", foodController.updateFoodItem);
-router.delete("/food/:id", foodController.deleteFoodItem);
-router.get("/food/:id", foodController.getFoodItemById);
-router.get("/food", foodController.getAllFoodItems);
+router.post("/", foodController.addFoodItem);
+router.put("/:id", foodController.updateFoodItem);
+router.delete("/:id", foodController.deleteFoodItem);
+router.get("/:id", foodController.getFoodItemById);
+router.get("/", foodController.getAllFoodItems);
 
 export default router;
