@@ -26,8 +26,10 @@ app.use(cookieParser());
 import userRouter from "./routes/user.routes.js"
 import foodRouter from "./routes/food.routes.js"
 import cartRoutes from "./routes/cart.routes.js"
+import reviewRouter from "./routes/review.routes.js"
 app.use('/api/user',userRouter);
 app.use('/api/food', foodRouter);
 app.use('/api/cart', cartRoutes);
+app.use('/api/review', reviewRouter);
 
 export {app}

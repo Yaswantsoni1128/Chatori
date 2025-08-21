@@ -59,6 +59,39 @@ export const cartController = {
   },
   removeFromCart: async (req, res) => {
     try {
+      const { userId, foodId } = req.body;
+
+      const cart = await Cart.findOne({ userId });
+
+      if (!cart) {
+        res.status(404).json({ message: "Cart not found" });
+      }
+
+      const itemIndex = cart.items.findIndex(
+        (item) => item.foodId.toString() === foodId.toString()
+      );
+
+      if (itemIndex === -1) {
+        return res.status(404).json({ message: "Item not found in cart" });
+      }
+
+      cart.items.splice(itemIndex, 1); 
+      await cart.save();
+
+      res.status(200).json({
+        success: true,
+        message: "Item removed from cart",
+        data: cart,
+      });
+    } catch (error) {
+      console.error("Error removing from cart:", error);
+      res
+        .status(500)
+        .json({ message: "Internal server error", error: error.message });
+    }
+  },
+  decreaseItemQty: async (req, res) => {
+    try {
       const { userId, foodId, quantity } = req.body;
 
       const cart = await Cart.findOne({ userId });
