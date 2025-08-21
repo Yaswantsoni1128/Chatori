@@ -1,4 +1,4 @@
-import Review from "../models/review.model.js";
+import {Review} from "../models/review.model.js";
 import { Food } from "../models/food.model.js";
 
 export const reviewController = {
